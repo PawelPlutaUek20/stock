@@ -20,11 +20,14 @@ public class ProductCatalogTest {
         
         String productId = catalog.addProduct("Nice Picture", BigDecimal.valueOf(10.10), Arrays.asList("#tag1", "#tag2"), "images/image1.jpeg");
 
-        productExistsWithinTheSystem(productId);
+        productExistsWithinTheSystem(catalog, productId);
     }
 
     private ProductCatalog thereIsProductCatalog() {
+        return new ProductCatalog();
     }
 
-    ;
+    private void productExistsWithinTheSystem(ProductCatalog catalog, String productId) {
+        assertTrue(catalog.productExistsWithinTheSystem(productId));
+    }
 }
