@@ -17,6 +17,8 @@ public class Product {
     private final List<String> keywords;
     private final String filePath;
 
+    private Product()();
+
     public Product(UUID id, String title, BigDecimal price, List<String> keywords, String filePath) {
         this.id = id.toString();
         this.title = title;
