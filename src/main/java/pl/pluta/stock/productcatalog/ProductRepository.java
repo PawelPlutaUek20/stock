@@ -1,5 +1,7 @@
 package pl.pluta.stock.productcatalog;
 
-public interface ProductRepository extends CrudRepositoryProduct, String> {
+import org.springframework.data.repository.CrudRepository;
+
+public interface ProductRepository extends CrudRepository<Product, String> {
 
 }

@@ -1,4 +1,4 @@
-package pl.pluta.stock.productcatalog;
+package pl.pluta.stock;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootTest
-public class jdbcPlaygroudTest {
+public class jdbcPlaygroundTest {
     @Autowired
     JdbcTemplate jdbcTemplate;
     void clearDb() {
-        jdbcTemplate.execute("DROP TABLE product_catalog__products");
+        jdbcTemplate.execute("DROP TABLE IF EXISTS product_catalog__products");
         jdbcTemplate.execute("CREATE TABLE `product_catalog__products` (" + "`id` varchar(100) NOT NULL," + "`description` varchar(255)," + "PRIMARY KEY (`id`)"+ ");");
     }
 
@@ -33,12 +33,14 @@ public class jdbcPlaygroudTest {
 
     @Test
     void itCountsRealProducts() {
-        jdbcTemplate.execute(("INSERT INTO `product_catalog__products` (`id`, `description`)`" + "values" + "(`product1`, `desc 1`)" + "(`product2`, `desc 2`);"));
+        clearDb();
 
-        int productCount = jdbcTemplate.queryForObject( "select count(*) from `product_catalog_products`", Integer.class);
+        jdbcTemplate.execute(("INSERT INTO `product_catalog__products` (`id`, `description`)" + "VALUES" + "('product1', 'desc 1')," + "('product2', 'desc 2');"));
 
-        jdbcTemplate.update(insertSql, product.getId(), product.getDescription());
+        int productCount = jdbcTemplate.queryForObject( "select count(*) from `product_catalog__products`", Integer.class);
 
-        assertEquals(1, productCount);
+//        jdbcTemplate.update(insertSql, product.getId(), product.getDescription());
+
+        assertEquals(2, productCount);
     }
 }
