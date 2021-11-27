@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductCatalogTest {
     @Test
@@ -17,7 +17,7 @@ public class ProductCatalogTest {
     @Test
     void itAllowAddProductToCatalog() {
         ProductCatalog catalog = thereIsProductCatalog();
-        
+
         String productId = catalog.addProduct("Nice Picture", BigDecimal.valueOf(10.10), Arrays.asList("#tag1", "#tag2"), "images/image1.jpeg");
 
         productExistsWithinTheSystem(catalog, productId);
