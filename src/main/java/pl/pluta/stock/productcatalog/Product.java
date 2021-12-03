@@ -17,7 +17,7 @@ public class Product {
     private List<String> keywords;
     private String filePath;
 
-    protected Product() {
+    Product() {
     }
 
     public Product(UUID id, String title, BigDecimal price, List<String> keywords, String filePath) {
