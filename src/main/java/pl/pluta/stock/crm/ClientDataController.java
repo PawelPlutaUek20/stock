@@ -6,7 +6,7 @@ import java.util.List;
 
 @RestController
 public class ClientDataController {
-    private ClientDataRepository repository;
+    private final ClientDataRepository repository;
 
     ClientDataController(ClientDataRepository repository) {
         this.repository = repository;
@@ -24,7 +24,7 @@ public class ClientDataController {
 
     @GetMapping("/api/clients/{id}")
     ClientData read(@PathVariable Integer id) {
-        return repository.findById(id).orElseThrow(() -> new ClientNotFoundException());
+        return repository.findById(id).orElseThrow(ClientNotFoundException::new);
     }
 
     @DeleteMapping("/api/clients/{id}")

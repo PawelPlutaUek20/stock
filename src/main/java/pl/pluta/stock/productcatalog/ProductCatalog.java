@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class ProductCatalog {
 
-    private ProductRepository repository;
+    private final ProductRepository repository;
 
     public ProductCatalog(ProductRepository repository) {
 
