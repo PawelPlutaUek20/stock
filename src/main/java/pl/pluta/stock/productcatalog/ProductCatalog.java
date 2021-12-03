@@ -6,19 +6,23 @@ import java.util.UUID;
 
 public class ProductCatalog {
 
-    ProductStorage storage;
+    private final ProductRepository repository;
 
-    public ProductCatalog() {
-        this.storage = new ProductStorage();
+    public ProductCatalog(ProductRepository repository) {
+
+        this.repository = repository;
     }
 
     public String addProduct(String title, BigDecimal price, List<String> keywords, String filePath) {
         Product product = new Product(UUID.randomUUID(), title, price, keywords, filePath);
-        storage.save(product);
+        repository.save(product);
         return product.getId();
     }
 
-    public boolean productExistsWithinTheSystem(String productId) {
-        return false;
+    public boolean isProductExists(String productId) {
+        return repository.existsById(productId);
+    }
+
+    public void publish(String id) {
     }
 }

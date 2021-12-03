@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.pluta.stock.productcatalog.ProductCatalog;
-import pl.pluta.stock.productcatalog.ProductStorage;
+import pl.pluta.stock.productcatalog.ProductRepository;
 
 @SpringBootApplication
 public class App {
@@ -13,12 +13,9 @@ public class App {
     }
 
     @Bean
-    public ProductCatalog createProductCatalog(ProductStorage storage) {
-        return new ProductCatalog();
+    public ProductCatalog createProductCatalog(
+            ProductRepository productRepository) {
+        return new ProductCatalog(productRepository);
     }
 
-    @Bean
-    public ProductStorage createProductStorage() {
-        return new ProductStorage();
-    }
 }

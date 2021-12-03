@@ -1,5 +1,9 @@
 package pl.pluta.stock.productcatalog;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -8,6 +12,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     private String id;
@@ -16,9 +23,6 @@ public class Product {
     @Transient
     private List<String> keywords;
     private String filePath;
-
-    protected Product() {
-    }
 
     public Product(UUID id, String title, BigDecimal price, List<String> keywords, String filePath) {
         this.id = id.toString();
