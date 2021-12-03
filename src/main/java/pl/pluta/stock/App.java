@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.pluta.stock.productcatalog.ProductCatalog;
 import pl.pluta.stock.productcatalog.ProductRepository;
-import pl.pluta.stock.productcatalog.ProductStorage;
 
 @SpringBootApplication
 public class App {

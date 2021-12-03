@@ -42,15 +42,22 @@ public class HTTPProductCatalogTest {
     }
 
     private void thereIsProducts(String productName) {
+        String id = productCatalog.addProduct(
+                productName,
+                BigDecimal.ONE,
+                Arrays.asList("tag1"),
+                "image path"
+        );
+        productCatalog.publish(id);
+    }
+
+    private void thereIsDraftProduct(String productName) {
         productCatalog.addProduct(
                 productName,
                 BigDecimal.ONE,
                 Arrays.asList("tag1"),
                 "image path"
         );
-    }
-
-    private void thereIsDraftProduct(String productsName) {
     }
 
     private ResponseEntity<Product[]> callApiForProducts() {
