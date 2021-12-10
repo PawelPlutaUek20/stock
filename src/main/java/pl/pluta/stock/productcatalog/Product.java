@@ -23,6 +23,7 @@ public class Product {
     @Transient
     private List<String> keywords;
     private String filePath;
+    private boolean published;
 
     public Product(UUID id, String title, BigDecimal price, List<String> keywords, String filePath) {
         this.id = id.toString();
@@ -30,9 +31,22 @@ public class Product {
         this.price = price;
         this.keywords = keywords;
         this.filePath = filePath;
+        this.published = false;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void publish() {
+        this.published = true;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public boolean isPublished() {
+        return published;
     }
 }

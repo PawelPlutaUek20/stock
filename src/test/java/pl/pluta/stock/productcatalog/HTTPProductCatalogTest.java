@@ -1,5 +1,6 @@
 package pl.pluta.stock.productcatalog;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,11 @@ public class HTTPProductCatalogTest {
 
     @Autowired
     ProductCatalog productCatalog;
+
+    @BeforeEach
+    void clearProducts() {
+        productCatalog.empty();
+    }
 
     @Test
     void itLoadsProductsViaEndpoint() {
