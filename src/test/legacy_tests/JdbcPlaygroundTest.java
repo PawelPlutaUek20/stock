@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class jdbcPlaygroundTest {
+public class JdbcPlaygroundTest {
     @Autowired
     JdbcTemplate jdbcTemplate;
 

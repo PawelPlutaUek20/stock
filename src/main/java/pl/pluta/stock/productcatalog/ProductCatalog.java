@@ -3,7 +3,6 @@ package pl.pluta.stock.productcatalog;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class ProductCatalog {

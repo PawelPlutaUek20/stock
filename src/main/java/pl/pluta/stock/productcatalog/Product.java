@@ -34,19 +34,7 @@ public class Product {
         this.published = false;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public void publish() {
         this.published = true;
-    }
-
-    public void setPublished(boolean published) {
-        this.published = published;
-    }
-
-    public boolean isPublished() {
-        return published;
     }
 }

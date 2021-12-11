@@ -22,13 +22,13 @@ public class App {
                 "Example product 1",
                 BigDecimal.valueOf(10.10),
                 Arrays.asList("tag1", "tag2"),
-                "http://picsum.photos/200/300"
+                "https://picsum.photos/200/300"
         );
         String productId2 = productCatalog.addProduct(
                 "Example product 2",
                 BigDecimal.valueOf(20.10),
                 Arrays.asList("tag1", "tag2"),
-                "http://picsum.photos/200/300"
+                "https://picsum.photos/200/300"
         );
         productCatalog.publish(productId1);
         productCatalog.publish(productId2);
