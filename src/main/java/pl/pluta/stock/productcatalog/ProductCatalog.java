@@ -3,6 +3,7 @@ package pl.pluta.stock.productcatalog;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ProductCatalog {
 
@@ -24,5 +25,16 @@ public class ProductCatalog {
     }
 
     public void publish(String id) {
+        Product product = repository.findById(id).get();
+        product.publish();
+        repository.save(product);
+    }
+
+    public List<Product> allProducts() {
+        return repository.findAll().stream().filter(Product::isPublished).collect((Collectors.toList()));
+    }
+
+    public void empty() {
+        repository.deleteAll();
     }
 }

@@ -1,17 +1,15 @@
-package pl.pluta.stock;
+package pl.pluta.stock.productcatalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.pluta.stock.productcatalog.Product;
-import pl.pluta.stock.productcatalog.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootTest
-public class JpaPlaygroundTest {
+public class JpaProductRepositoryTest {
     @Autowired
     ProductRepository productRepository;
 
