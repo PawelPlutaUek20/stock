@@ -3,7 +3,7 @@ name: Run tests on CI env
 on:
   push: ~
   pull_request:
-    branches: [master, production]
+    branches: [ master, production ]
 
 jobs:
   linter:
