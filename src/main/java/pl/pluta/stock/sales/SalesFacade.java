@@ -37,4 +37,8 @@ public class SalesFacade {
     private OfferLine createOfferLine(BasketItem basketItem) {
         return new OfferLine(basketItem.getProductId(), basketItem.getQuantity(), productDetailsProvider.getProductDetails(basketItem.getProductId()).getPrice());
     }
+
+    public ReservationDetails acceptOffer(String customerId, CustomerData customerData) {
+        return ReservationDetails.ofPayment("reservationId", "paymentId", "paymentUrl");
+    }
 }

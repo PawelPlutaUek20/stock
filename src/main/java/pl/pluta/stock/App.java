@@ -3,8 +3,13 @@ package pl.pluta.stock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.pluta.stock.productcatalog.Product;
 import pl.pluta.stock.productcatalog.ProductCatalog;
 import pl.pluta.stock.productcatalog.ProductRepository;
+import pl.pluta.stock.sales.BasketStorage;
+import pl.pluta.stock.sales.ProductDetails;
+import pl.pluta.stock.sales.ProductDetailsProvider;
+import pl.pluta.stock.sales.SalesFacade;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -34,6 +39,25 @@ public class App {
         productCatalog.publish(productId2);
 
         return productCatalog;
+    }
+
+    @Bean
+    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
+        return new SalesFacade(
+                new BasketStorage(),
+                productDetailsProvider
+        );
+    }
+
+    @Bean
+    public ProductDetailsProvider productDetailsProvider(ProductCatalog productCatalog ) {
+        return (id) -> {
+            Product product = productCatalog.getById(id);
+            return new ProductDetails(
+                    product.getId(),
+                    product.getPrice()
+            );
+        };
     }
 
 }

@@ -1,5 +1,5 @@
 package pl.pluta.stock.sales;
 
-interface ProductDetailsProvider {
+public interface ProductDetailsProvider {
     ProductDetails getProductDetails(String productId);
 }
