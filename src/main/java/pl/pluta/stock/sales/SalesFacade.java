@@ -1,16 +1,18 @@
 package pl.pluta.stock.sales;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import pl.pluta.stock.sales.offerting.Offer;
+import pl.pluta.stock.sales.offerting.OfferMaker;
 
 public class SalesFacade {
     private final BasketStorage basketStorage;
     private final ProductDetailsProvider productDetailsProvider;
+    private OfferMaker offerMaker;
 
-    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider) {
+    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker) {
         this.basketStorage = basketStorage;
         this.productDetailsProvider = productDetailsProvider;
+        this.offerMaker = offerMaker;
     }
 
     public void addToBasket(String customerId, String productId) {
@@ -28,14 +30,7 @@ public class SalesFacade {
 
     public Offer getCurrentOffer(String customerId) {
         Basket basket = loadBasketForCustomer(customerId);
-        List<OfferLine> lines = basket.getBasketItems().stream().map(this::createOfferLine).collect(Collectors.toList());
-        BigDecimal offerTotal = lines.stream().map(OfferLine::getTotal).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
-
-        return Offer.of(offerTotal, lines);
-    }
-
-    private OfferLine createOfferLine(BasketItem basketItem) {
-        return new OfferLine(basketItem.getProductId(), basketItem.getQuantity(), productDetailsProvider.getProductDetails(basketItem.getProductId()).getPrice());
+        return offerMaker.makeAnOffer(basket);
     }
 
     public ReservationDetails acceptOffer(String customerId, CustomerData customerData) {

@@ -2,6 +2,7 @@ package pl.pluta.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.pluta.stock.sales.offerting.OfferMaker;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -69,7 +70,8 @@ public class CollectingProductsTest {
     private SalesFacade thereIsSalesModule() {
         return new SalesFacade(
                 basketStorage,
-                productDetailsProvider
+                productDetailsProvider,
+                new OfferMaker(productDetailsProvider)
         );
     }
 
