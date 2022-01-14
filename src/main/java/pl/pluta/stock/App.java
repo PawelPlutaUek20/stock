@@ -10,6 +10,7 @@ import pl.pluta.stock.sales.BasketStorage;
 import pl.pluta.stock.sales.ProductDetails;
 import pl.pluta.stock.sales.ProductDetailsProvider;
 import pl.pluta.stock.sales.SalesFacade;
+import pl.pluta.stock.sales.offerting.OfferMaker;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -33,7 +34,7 @@ public class App {
                 "Example product 2",
                 BigDecimal.valueOf(20.10),
                 Arrays.asList("tag1", "tag2"),
-                "https://picsum.photos/200/300"
+                "https://picsum.photos/300/200"
         );
         productCatalog.publish(productId1);
         productCatalog.publish(productId2);
@@ -45,12 +46,13 @@ public class App {
     public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
         return new SalesFacade(
                 new BasketStorage(),
-                productDetailsProvider
+                productDetailsProvider,
+                new OfferMaker(productDetailsProvider)
         );
     }
 
     @Bean
-    public ProductDetailsProvider productDetailsProvider(ProductCatalog productCatalog ) {
+    public ProductDetailsProvider productDetailsProvider(ProductCatalog productCatalog) {
         return (id) -> {
             Product product = productCatalog.getById(id);
             return new ProductDetails(

@@ -1,4 +1,4 @@
-package pl.pluta.stock.sales;
+package pl.pluta.stock.sales.offerting;
 
 import java.math.BigDecimal;
 
