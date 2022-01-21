@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import pl.pluta.stock.sales.offerting.OfferMaker;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -71,8 +69,9 @@ public class CollectingProductsTest {
         return new SalesFacade(
                 basketStorage,
                 productDetailsProvider,
-                new OfferMaker(productDetailsProvider)
-        );
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(),
+                new DummyPaymentGateway());
     }
 
     private String thereIsCustomer(String customerName) {

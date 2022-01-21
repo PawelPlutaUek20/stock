@@ -49,7 +49,8 @@ public class MakingOfferTest {
         return new SalesFacade(
                 basketStorage,
                 productDetailsProvider,
-                new OfferMaker(productDetailsProvider)
-        );
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(),
+                new DummyPaymentGateway());
     }
 }
