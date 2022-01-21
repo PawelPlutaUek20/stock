@@ -64,7 +64,7 @@ public class App {
     }
 
     @Bean
-    public JpaReservationStorage createJpaReervationStorage(ReservationRepository reservationRepository) {
+    public JpaReservationStorage createJpaReservationStorage(ReservationRepository reservationRepository) {
         return new JpaReservationStorage(reservationRepository);
     }
 
