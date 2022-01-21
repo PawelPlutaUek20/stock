@@ -3,16 +3,22 @@ package pl.pluta.stock.sales;
 
 import pl.pluta.stock.sales.offerting.Offer;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
+import pl.pluta.stock.sales.ordering.Reservation;
 
 public class SalesFacade {
     private final BasketStorage basketStorage;
     private final ProductDetailsProvider productDetailsProvider;
     private OfferMaker offerMaker;
+    private InMemoryReservationStorage reservationStorage;
+    private DummyPaymentGateway paymentGateway;
 
-    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker) {
+    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker, InMemoryReservationStorage reservationStorage, DummyPaymentGateway paymentGateway) {
         this.basketStorage = basketStorage;
         this.productDetailsProvider = productDetailsProvider;
         this.offerMaker = offerMaker;
+        this.reservationStorage = reservationStorage;
+        this.paymentGateway = paymentGateway;
     }
 
     public void addToBasket(String customerId, String productId) {
@@ -34,6 +40,18 @@ public class SalesFacade {
     }
 
     public ReservationDetails acceptOffer(String customerId, CustomerData customerData) {
-        return ReservationDetails.ofPayment("reservationId", "paymentId", "paymentUrl");
+        Basket basket = loadBasketForCustomer(customerId);
+        Offer currentOffer = offerMaker.makeAnOffer(basket);
+
+        Reservation reservation = Reservation.of(currentOffer, basket.getBasketItems(), customerData);
+        reservation.registerPayment(paymentGateway);
+
+        reservationStorage.save(reservation);
+
+        return ReservationDetails.ofPayment(
+                reservation.getId(),
+                reservation.paymentDetails().getPaymentId(),
+                reservation.paymentDetails().getPaymentUrl()
+        );
     }
 }

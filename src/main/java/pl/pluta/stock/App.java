@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Bean;
 import pl.pluta.stock.productcatalog.Product;
 import pl.pluta.stock.productcatalog.ProductCatalog;
 import pl.pluta.stock.productcatalog.ProductRepository;
-import pl.pluta.stock.sales.BasketStorage;
-import pl.pluta.stock.sales.ProductDetails;
-import pl.pluta.stock.sales.ProductDetailsProvider;
-import pl.pluta.stock.sales.SalesFacade;
+import pl.pluta.stock.sales.*;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
+import pl.pluta.stock.sales.ordering.ReservationRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -47,7 +46,9 @@ public class App {
         return new SalesFacade(
                 new BasketStorage(),
                 productDetailsProvider,
-                new OfferMaker(productDetailsProvider)
+                new OfferMaker(productDetailsProvider),
+                new InMemoryReservationStorage(),
+                new DummyPaymentGateway()
         );
     }
 
@@ -60,6 +61,11 @@ public class App {
                     product.getPrice()
             );
         };
+    }
+
+    @Bean
+    public JpaReservationStorage createJpaReservationStorage(ReservationRepository reservationRepository) {
+        return new JpaReservationStorage(reservationRepository);
     }
 
 }
