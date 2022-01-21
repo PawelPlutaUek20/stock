@@ -6,7 +6,7 @@
 
     <groupId>pl.pluta.stock</groupId>
     <artifactId>stock</artifactId>
-    <version>1.2</version>
+    <version>1.2.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
