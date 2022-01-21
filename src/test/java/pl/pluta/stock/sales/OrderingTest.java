@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.pluta.stock.sales.offerting.Offer;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
+import pl.pluta.stock.sales.ordering.Reservation;
 
 import java.math.BigDecimal;
 import java.util.Optional;

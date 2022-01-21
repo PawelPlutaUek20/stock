@@ -1,9 +1,14 @@
-package pl.pluta.stock.sales;
+package pl.pluta.stock.sales.ordering;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class CustomerDetails {
     String firstname;
     String lastname;
     String email;
+
+    public CustomerDetails() {}
 
     public CustomerDetails(String firstname, String lastname, String email) {
         this.firstname = firstname;

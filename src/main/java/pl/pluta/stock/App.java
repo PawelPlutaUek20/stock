@@ -8,6 +8,8 @@ import pl.pluta.stock.productcatalog.ProductCatalog;
 import pl.pluta.stock.productcatalog.ProductRepository;
 import pl.pluta.stock.sales.*;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
+import pl.pluta.stock.sales.ordering.ReservationRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -59,6 +61,11 @@ public class App {
                     product.getPrice()
             );
         };
+    }
+
+    @Bean
+    public JpaReservationStorage createJpaReervationStorage(ReservationRepository reservationRepository) {
+        return new JpaReservationStorage(reservationRepository);
     }
 
 }

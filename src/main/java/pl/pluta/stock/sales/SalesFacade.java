@@ -3,6 +3,8 @@ package pl.pluta.stock.sales;
 
 import pl.pluta.stock.sales.offerting.Offer;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
+import pl.pluta.stock.sales.ordering.Reservation;
 
 public class SalesFacade {
     private final BasketStorage basketStorage;
@@ -48,8 +50,8 @@ public class SalesFacade {
 
         return ReservationDetails.ofPayment(
                 reservation.getId(),
-                reservation.paymentDetails().getId(),
-                reservation.paymentDetails().getUrl()
+                reservation.paymentDetails().getPaymentId(),
+                reservation.paymentDetails().getPaymentUrl()
         );
     }
 }

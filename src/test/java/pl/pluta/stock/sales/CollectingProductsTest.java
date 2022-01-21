@@ -3,6 +3,7 @@ package pl.pluta.stock.sales;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.pluta.stock.sales.offerting.OfferMaker;
+import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
 
 import java.math.BigDecimal;
 
