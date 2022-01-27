@@ -5,6 +5,7 @@ import pl.pluta.stock.sales.offerting.Offer;
 import pl.pluta.stock.sales.offerting.OfferMaker;
 import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
 import pl.pluta.stock.sales.ordering.Reservation;
+import pl.pluta.stock.sales.ordering.ReservationDetails;
 
 public class SalesFacade {
     private final BasketStorage basketStorage;
