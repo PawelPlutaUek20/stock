@@ -3,6 +3,7 @@ package pl.pluta.stock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.pluta.stock.payment.PayU;
 import pl.pluta.stock.productcatalog.Product;
 import pl.pluta.stock.productcatalog.ProductCatalog;
 import pl.pluta.stock.productcatalog.ProductRepository;
@@ -10,6 +11,7 @@ import pl.pluta.stock.sales.*;
 import pl.pluta.stock.sales.offerting.OfferMaker;
 import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
 import pl.pluta.stock.sales.ordering.ReservationRepository;
+import pl.pluta.stock.sales.payment.PayUPaymentGateway;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -42,13 +44,13 @@ public class App {
     }
 
     @Bean
-    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider) {
+    public SalesFacade createSalesFacade(ProductDetailsProvider productDetailsProvider, PayU payU) {
         return new SalesFacade(
                 new BasketStorage(),
                 productDetailsProvider,
                 new OfferMaker(productDetailsProvider),
                 new InMemoryReservationStorage(),
-                new DummyPaymentGateway()
+                new PayUPaymentGateway(payU)
         );
     }
 
