@@ -5,15 +5,16 @@ import pl.pluta.stock.sales.offerting.Offer;
 import pl.pluta.stock.sales.offerting.OfferMaker;
 import pl.pluta.stock.sales.ordering.InMemoryReservationStorage;
 import pl.pluta.stock.sales.ordering.Reservation;
+import pl.pluta.stock.sales.ordering.ReservationDetails;
 
 public class SalesFacade {
     private final BasketStorage basketStorage;
     private final ProductDetailsProvider productDetailsProvider;
-    private OfferMaker offerMaker;
-    private InMemoryReservationStorage reservationStorage;
-    private DummyPaymentGateway paymentGateway;
+    private final OfferMaker offerMaker;
+    private final InMemoryReservationStorage reservationStorage;
+    private final PaymentGateway paymentGateway;
 
-    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker, InMemoryReservationStorage reservationStorage, DummyPaymentGateway paymentGateway) {
+    public SalesFacade(BasketStorage basketStorage, ProductDetailsProvider productDetailsProvider, OfferMaker offerMaker, InMemoryReservationStorage reservationStorage, PaymentGateway paymentGateway) {
         this.basketStorage = basketStorage;
         this.productDetailsProvider = productDetailsProvider;
         this.offerMaker = offerMaker;

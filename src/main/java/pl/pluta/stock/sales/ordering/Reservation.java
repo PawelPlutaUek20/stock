@@ -1,6 +1,8 @@
 package pl.pluta.stock.sales.ordering;
 
-import pl.pluta.stock.sales.*;
+import pl.pluta.stock.sales.BasketItem;
+import pl.pluta.stock.sales.CustomerData;
+import pl.pluta.stock.sales.PaymentGateway;
 import pl.pluta.stock.sales.offerting.Offer;
 
 import javax.persistence.*;
@@ -25,7 +27,8 @@ public class Reservation {
     private PaymentDetails paymentDetails;
     private Instant paidAt;
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
     public Reservation(String id, BigDecimal total, CustomerDetails customerDetails, List<ReservationLine> lines) {
         this.id = id;
@@ -48,21 +51,27 @@ public class Reservation {
                         .collect(Collectors.toList())
         );
     }
+
     public boolean isPending() {
         return paidAt == null;
     }
+
     public String getCustomerEmail() {
         return customerDetails.email;
     }
+
     public int getLinesCount() {
         return lines.size();
     }
-    public void registerPayment(DummyPaymentGateway paymentGateway) {
+
+    public void registerPayment(PaymentGateway paymentGateway) {
         paymentDetails = paymentGateway.register(id, total, customerDetails);
     }
+
     public String getId() {
         return id;
     }
+
     public PaymentDetails paymentDetails() {
         return paymentDetails;
     }

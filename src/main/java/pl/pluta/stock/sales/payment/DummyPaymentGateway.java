@@ -1,5 +1,6 @@
-package pl.pluta.stock.sales;
+package pl.pluta.stock.sales.payment;
 
+import pl.pluta.stock.sales.PaymentGateway;
 import pl.pluta.stock.sales.ordering.CustomerDetails;
 import pl.pluta.stock.sales.ordering.PaymentDetails;
 

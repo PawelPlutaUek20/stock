@@ -1,4 +1,4 @@
-package pl.pluta.stock.sales;
+package pl.pluta.stock.sales.ordering;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
